@@ -12,23 +12,14 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-
 import javax.sql.DataSource;
 
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
-
-    @Autowired
-    public JobBuilderFactory jobBuilderFactory;
-
-    @Autowired
-    public StepBuilderFactory stepBuilderFactory;
-
 
     @Bean
     public FlatFileItemReader<Person> reader() {
@@ -58,7 +49,7 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Job importUserJob(JobCompletionNotificationListener listener, Step step1) {
+    public Job importUserJob(JobBuilderFactory jobBuilderFactory, JobCompletionNotificationListener listener, Step step1) {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
@@ -68,7 +59,7 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Step step1(JdbcBatchItemWriter<Person> writer) {
+    public Step step1(StepBuilderFactory stepBuilderFactory, JdbcBatchItemWriter<Person> writer) {
         return stepBuilderFactory.get("step1")
                 .<Person, Person> chunk(10)
                 .reader(reader())
