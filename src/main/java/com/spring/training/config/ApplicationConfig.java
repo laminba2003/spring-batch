@@ -31,7 +31,7 @@ public class ApplicationConfig {
         JdbcCursorItemReader reader = new JdbcCursorItemReader();
         reader.setDataSource(dataSource);
         reader.setSaveState(false);
-        reader.setSql("select id, first_name, last_name, email from persons");
+        reader.setSql("select * from persons");
         reader.setRowMapper(new PersonRowMapper());
         return reader;
     }
