@@ -1,0 +1,11 @@
+insert into persons(id, first_name, last_name, email) values(1,'Mamadou Lamine', 'Ba', 'lamine@gmail.com');
+insert into persons(id, first_name, last_name, email) values(2,'Moussa', 'Fall', 'moussa@gmail.com');
+insert into persons(id, first_name, last_name, email) values(3,'John', 'Doe', 'john@gmail.com');
+insert into persons(id, first_name, last_name, email) values(4,'Sadio', 'Mane', 'sadio@gmail.com');
+insert into persons(id, first_name, last_name, email) values(5,'Gavi', 'Perez', 'gavi@gmail.com');
+insert into persons(id, first_name, last_name, email) values(6,'Bob', 'Dylan', 'bob@gmail.com');
+insert into persons(id, first_name, last_name, email) values(7,'Melissa', 'Kane', 'melissa@gmail.com');
+insert into persons(id, first_name, last_name, email) values(8,'Amandine', 'Coquet', 'amandine@gmail.com');
+insert into persons(id, first_name, last_name, email) values(9,'Paco', 'Jackson', 'paco@gmail.com');
+insert into persons(id, first_name, last_name, email) values(10,'Meissa', 'Toure', 'meissa@gmail.com');
+insert into persons(id, first_name, last_name, email) values(11,'Camilia', 'Doe', 'camilia@gmail.com');

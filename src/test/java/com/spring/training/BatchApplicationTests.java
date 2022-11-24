@@ -1,4 +1,4 @@
-package com.spring.trainging.batch;
+package com.spring.training;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
