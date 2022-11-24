@@ -28,12 +28,12 @@ public class ApplicationConfig {
 
     @Bean
     public ItemReader<Person> reader(DataSource dataSource) {
-        JdbcCursorItemReader itemReader = new JdbcCursorItemReader();
-        itemReader.setDataSource(dataSource);
-        itemReader.setSaveState(false);
-        itemReader.setSql("select id, first_name, last_name, email from persons");
-        itemReader.setRowMapper(new PersonRowMapper());
-        return itemReader;
+        JdbcCursorItemReader reader = new JdbcCursorItemReader();
+        reader.setDataSource(dataSource);
+        reader.setSaveState(false);
+        reader.setSql("select id, first_name, last_name, email from persons");
+        reader.setRowMapper(new PersonRowMapper());
+        return reader;
     }
 
     @Bean
@@ -41,13 +41,13 @@ public class ApplicationConfig {
         kafkaTemplate.setDefaultTopic(KAFKA_TOPIC);
         return new KafkaItemWriterBuilder<String, Message>().
                 kafkaTemplate(kafkaTemplate).
-                itemKeyMapper(message -> "email-batch")
+                itemKeyMapper(Message::getTo)
                 .build();
     }
 
     @Bean
-    public Step step(StepBuilderFactory stepBuilderFactory, ItemReader<Person> reader, ItemWriter<Message> writer) {
-        return stepBuilderFactory.get("step")
+    public Step step(StepBuilderFactory factory, ItemReader<Person> reader, ItemWriter<Message> writer) {
+        return factory.get("step")
                 .<Person, Message>chunk(10)
                 .reader(reader)
                 .processor(new PersonItemProcessor(batchConfig()))
