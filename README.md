@@ -68,9 +68,9 @@ public class ApplicationConfig {
     public ItemWriter<Message> writer(KafkaTemplate<String, Message> kafkaTemplate) {
         kafkaTemplate.setDefaultTopic(KAFKA_TOPIC);
         return new KafkaItemWriterBuilder<String, Message>().
-                kafkaTemplate(kafkaTemplate).
-                itemKeyMapper(message -> "email-batch")
-                .build();
+                        kafkaTemplate(kafkaTemplate).
+                        itemKeyMapper(Message::getTo)
+                        .build();
     }
 
     @Bean
