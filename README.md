@@ -37,7 +37,7 @@ Spring Batch supports the following business scenarios:
 
 All batch processing can be described in its most simple form as reading in large amounts of data, performing some type of calculation or transformation, and writing the result out. Spring Batch provides three key interfaces to help perform bulk reading and writing: **ItemReader**, **ItemProcessor**, and **ItemWriter**.
 
-## Messaging Readers And Writers
+## Messaging Readers and Writers
 
 Spring Batch offers the following readers and writers for commonly used messaging systems:
 
