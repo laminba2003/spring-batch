@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class JobNotificationListener extends JobExecutionListenerSupport {
 
+    @Override
     public void beforeJob(JobExecution execution) {
         switch (execution.getStatus()) {
             case STARTED:
