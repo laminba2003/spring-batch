@@ -82,6 +82,12 @@ public class ApplicationConfig {
                 .writer(writer)
                 .build();
     }
+        
+    @Bean
+    @ConfigurationProperties("configuration")
+    public BatchConfig batchConfig() {
+        return new BatchConfig();
+    }
 
     @Bean
     public Job job(JobBuilderFactory factory, JobNotificationListener listener, Step step) {
