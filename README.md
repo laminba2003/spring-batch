@@ -59,7 +59,7 @@ public class ApplicationConfig {
         JdbcCursorItemReader itemReader = new JdbcCursorItemReader();
         itemReader.setDataSource(dataSource);
         itemReader.setSaveState(false);
-        itemReader.setSql("select id, first_name, last_name, email from persons");
+        itemReader.setSql("select * from persons");
         itemReader.setRowMapper(new PersonRowMapper());
         return itemReader;
     }
