@@ -12,7 +12,6 @@ Spring Batch is a lightweight, comprehensive batch framework designed to enable 
 
 Spring Batch provides reusable functions that are essential in processing large volumes of records, including logging and tracing, transaction management, job processing statistics, job restart, skip, and resource management. It also provides more advanced technical services and features that enable extremely high-volume and high performance batch jobs through optimization and partitioning techniques. You can use Spring Batch in both simple use cases (such as reading a file into a database or running a stored procedure) and complex, high volume use cases (such as moving high volumes of data between databases, transforming it, and so on). High-volume batch jobs can use the framework in a highly scalable manner to process significant volumes of information.
 
-
 ## Business Scenarios
 
 Spring Batch supports the following business scenarios:
@@ -82,12 +81,6 @@ public class ApplicationConfig {
                 .processor(new PersonItemProcessor(batchConfig()))
                 .writer(writer)
                 .build();
-    }
-
-    @Bean
-    @ConfigurationProperties("configuration")
-    public BatchConfig batchConfig() {
-        return new BatchConfig();
     }
 
     @Bean
