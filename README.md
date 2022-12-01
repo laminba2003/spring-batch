@@ -123,7 +123,7 @@ $ docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topi
 Now that we’ve written messages to the topic, we’ll read those messages back. Run this command to launch the kafka-console-consumer. The --from-beginning argument means that messages will be read from the start of the topic.
 
 ```bash
-$ docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic javainyse --from-beginning
+$ docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic javainuse --from-beginning
 ```
 
 ## Stop the Kafka broker
