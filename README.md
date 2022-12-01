@@ -112,10 +112,18 @@ $ docker-compose up -d
 
 ## Create a topic
 
-Run this command to create a new topic into which we’ll write the messages.
+Run this command to create a new topic into which we’ll write the messages created by the batch.
 
 ```bash
 $ docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic javainuse
+```
+
+## Run the application
+
+Run this command to launch the batch process.
+
+```
+mvn spring-boot:run
 ```
 
 ## Read messages from the topic
