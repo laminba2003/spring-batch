@@ -56,44 +56,44 @@ public class ApplicationConfig {
 
     @Bean
     public ItemReader<Person> reader(DataSource dataSource) {
-        JdbcCursorItemReader itemReader = new JdbcCursorItemReader();
-        itemReader.setDataSource(dataSource);
-        itemReader.setSaveState(false);
-        itemReader.setSql("select * from persons");
-        itemReader.setRowMapper(new PersonRowMapper());
-        return itemReader;
+        JdbcCursorItemReader reader = new JdbcCursorItemReader();
+        reader.setDataSource(dataSource);
+        reader.setSaveState(false);
+        reader.setSql("select * from persons");
+        reader.setRowMapper(new PersonRowMapper());
+        return reader;
     }
 
     @Bean
     public ItemWriter<Message> writer(KafkaTemplate<String, Message> kafkaTemplate) {
         kafkaTemplate.setDefaultTopic(KAFKA_TOPIC);
         return new KafkaItemWriterBuilder<String, Message>().
-                        kafkaTemplate(kafkaTemplate).
-                        itemKeyMapper(Message::getTo)
-                        .build();
+                kafkaTemplate(kafkaTemplate).
+                itemKeyMapper(Message::getTo)
+                .build();
     }
 
     @Bean
-    public Step step(StepBuilderFactory stepBuilderFactory, ItemReader<Person> reader, ItemWriter<Message> writer) {
-        return stepBuilderFactory.get("step")
+    public Step step(StepBuilderFactory factory, ItemReader<Person> reader, ItemWriter<Message> writer) {
+        return factory.get("step")
                 .<Person, Message>chunk(10)
                 .reader(reader)
                 .processor(new PersonItemProcessor(batchConfig()))
                 .writer(writer)
                 .build();
     }
-        
+
     @Bean
-    @ConfigurationProperties("configuration")
+    @ConfigurationProperties("batch.configuration")
     public BatchConfig batchConfig() {
         return new BatchConfig();
     }
 
     @Bean
-    public Job job(JobBuilderFactory factory, JobNotificationListener listener, Step step) {
+    public Job job(JobBuilderFactory factory, Step step) {
         return factory.get("job")
                 .incrementer(new RunIdIncrementer())
-                .listener(listener)
+                .listener(new JobNotificationListener())
                 .flow(step)
                 .end()
                 .build();
