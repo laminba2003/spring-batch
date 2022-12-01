@@ -1,16 +1,9 @@
 spring:
   datasource:
-    driverClassName: org.h2.Driver
+    driver-class-name: org.h2.Driver
     password: password
     url: jdbc:h2:mem:testdb
     username: sa
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create
-    show-sql: true
   kafka:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -18,7 +11,8 @@ spring:
       properties:
         spring.json.add.type.headers: false
 
-configuration:
-  email: info@thinktech.com
-  message: "this email is sent to all the persons"
+batch:
+  configuration:
+    email: info@thinktech.com
+    message: "this email is sent to all the persons"
 

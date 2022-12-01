@@ -101,3 +101,33 @@ public class ApplicationConfig {
 
 }
 ```
+
+## Start the Kafka broker
+
+run this command to start all services in the correct order.
+
+```bash
+$ docker-compose up -d
+```
+
+## Create a topic
+
+Run this command to create a new topic into which we’ll write the messages.
+
+```bash
+$ docker exec broker kafka-topics --bootstrap-server broker:9092 --create --topic javainuse
+```
+
+## Read messages from the topic
+
+Now that we’ve written messages to the topic, we’ll read those messages back. Run this command to launch the kafka-console-consumer. The --from-beginning argument means that messages will be read from the start of the topic.
+
+```bash
+$ docker exec --interactive --tty broker kafka-console-consumer --bootstrap-server broker:9092 --topic javainyse --from-beginning
+```
+
+## Stop the Kafka broker
+
+```bash
+docker-compose down
+```

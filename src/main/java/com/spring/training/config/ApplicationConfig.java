@@ -56,16 +56,16 @@ public class ApplicationConfig {
     }
 
     @Bean
-    @ConfigurationProperties("configuration")
+    @ConfigurationProperties("batch.configuration")
     public BatchConfig batchConfig() {
         return new BatchConfig();
     }
 
     @Bean
-    public Job job(JobBuilderFactory factory, JobNotificationListener listener, Step step) {
+    public Job job(JobBuilderFactory factory, Step step) {
         return factory.get("job")
                 .incrementer(new RunIdIncrementer())
-                .listener(listener)
+                .listener(new JobNotificationListener())
                 .flow(step)
                 .end()
                 .build();
