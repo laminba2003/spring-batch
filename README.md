@@ -48,6 +48,15 @@ Spring Batch offers the following readers and writers for commonly used messagin
 * KafkaItemWriter
 
 ## Setup
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-batch</artifactId>
+</dependency>
+
+```
+
 ```java
 @Configuration
 public class ApplicationConfig {
