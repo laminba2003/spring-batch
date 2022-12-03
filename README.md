@@ -113,7 +113,7 @@ public class ApplicationConfig {
 
 ## Start the Kafka broker
 
-run this command to start all services in the correct order.
+Run this command to start all services in the correct order.
 
 ```bash
 $ docker-compose up -d
